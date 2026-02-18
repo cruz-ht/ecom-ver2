@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 function Slider() {
   const [products, setProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   // 3  products from database
   useEffect(() => {
-    fetch('http://localhost:3000/api/products')
+     fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data.slice(0, 3));

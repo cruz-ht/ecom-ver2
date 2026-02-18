@@ -10,10 +10,13 @@ function Products() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [priceSort, setPriceSort] = useState('default');
   const [loading, setLoading] = useState(true);
+  
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   // Fetch categories
   useEffect(() => {
-    fetch('http://localhost:3000/api/categories')
+    fetch(`${API_URL}/api/categories`)
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(err => console.error('Error fetching categories:', err));
@@ -22,7 +25,7 @@ function Products() {
   // Fetch all products
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:3000/api/products')
+    fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
